@@ -354,24 +354,27 @@ textarea:focus-visible {
   margin-top: 8px;
 }
 
-.product-grid {
+.app-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
 }
 
-.product-card {
-  background: var(--bg-elev);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 20px 18px 18px;
+.app-card {
   display: flex;
   flex-direction: column;
-  min-height: 220px;
+  min-width: 0;
+  height: 100%;
+  background: var(--bg-elev);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: var(--shadow);
 }
 
-.product-kicker {
-  margin: 0 0 6px;
+.app-kicker {
+  margin: 0 0 8px;
   color: var(--accent);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -379,33 +382,49 @@ textarea:focus-visible {
   font-weight: 700;
 }
 
-.product-card h3 {
+.app-card h3 {
   margin: 0;
-  font-size: 1.12rem;
+  font-size: 1.18rem;
   line-height: 1.3;
+  min-height: 2.6em;
 }
 
-.product-card ul {
-  margin: 12px 0 16px;
-  padding-left: 18px;
-  color: #d8d2c8;
-  flex: 1;
-}
-
-.product-card li + li {
-  margin-top: 8px;
-}
-
-.store-link {
-  align-self: flex-start;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
+.app-meta {
+  margin: 8px 0 14px;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
-.store-link:hover {
-  color: var(--accent-strong);
+.app-point {
+  margin: 0 0 10px;
+  color: #d8d2c8;
+  font-size: 0.95rem;
+}
+
+.app-point:last-of-type {
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.app-store {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(232, 184, 109, 0.12);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.app-store:hover {
+  background: var(--accent);
+  color: #1a140c;
 }
 
 .skill-panels {
@@ -538,7 +557,7 @@ textarea:focus-visible {
 
 @media (max-width: 900px) {
   .metrics,
-  .product-grid,
+  .app-grid,
   .skill-panels,
   .split,
   .contact-layout {
@@ -569,11 +588,15 @@ textarea:focus-visible {
   }
 
   .metrics,
-  .product-grid,
+  .app-grid,
   .skill-panels,
   .split,
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+
+  .app-card h3 {
+    min-height: 0;
   }
 
   .hero {
