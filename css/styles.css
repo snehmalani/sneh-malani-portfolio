@@ -93,6 +93,12 @@ textarea:focus-visible {
   backdrop-filter: blur(16px);
   background: rgba(12, 13, 15, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(12, 13, 15, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
 .header-inner,
@@ -142,6 +148,7 @@ textarea:focus-visible {
   color: var(--muted);
   text-decoration: none;
   font-size: 0.92rem;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .site-nav a:hover,
@@ -155,6 +162,10 @@ textarea:focus-visible {
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
 }
 
 .nav-toggle {
@@ -230,6 +241,11 @@ textarea:focus-visible {
   cursor: pointer;
   font-family: inherit;
   font-size: 0.95rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -309,6 +325,12 @@ textarea:focus-visible {
   padding: 28px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.company:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 184, 109, 0.28);
 }
 
 .company-head,
@@ -371,6 +393,13 @@ textarea:focus-visible {
   border-radius: 20px;
   padding: 22px;
   box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 184, 109, 0.32);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
 }
 
 .app-kicker {
@@ -457,6 +486,13 @@ textarea:focus-visible {
   padding: 6px 12px;
   font-size: 0.88rem;
   color: #ddd6cc;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.chip-list li:hover {
+  transform: translateY(-1px);
+  border-color: rgba(232, 184, 109, 0.35);
+  color: var(--text);
 }
 
 .split {
@@ -609,10 +645,86 @@ textarea:focus-visible {
   }
 }
 
+@media (hover: none) {
+  .btn:hover,
+  .nav-cta:hover,
+  .app-card:hover,
+  .company:hover,
+  .chip-list li:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  .btn:hover,
+  .nav-cta:hover,
+  .app-card:hover,
+  .company:hover,
+  .chip-list li:hover {
+    transform: none;
+  }
+
+  .motion-on .hero .eyebrow,
+  .motion-on .hero h1,
+  .motion-on .hero-role,
+  .motion-on .hero-lead,
+  .motion-on .hero-actions,
+  .motion-on .metrics > div,
+  .motion-on .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.motion-on .hero .eyebrow,
+.motion-on .hero h1,
+.motion-on .hero-role,
+.motion-on .hero-lead,
+.motion-on .hero-actions,
+.motion-on .metrics > div {
+  animation: fade-up 0.55s ease both;
+}
+
+.motion-on .hero h1 { animation-delay: 0.06s; }
+.motion-on .hero-role { animation-delay: 0.12s; }
+.motion-on .hero-lead { animation-delay: 0.18s; }
+.motion-on .hero-actions { animation-delay: 0.24s; }
+.motion-on .metrics > div:nth-child(1) { animation-delay: 0.3s; }
+.motion-on .metrics > div:nth-child(2) { animation-delay: 0.36s; }
+.motion-on .metrics > div:nth-child(3) { animation-delay: 0.42s; }
+.motion-on .metrics > div:nth-child(4) { animation-delay: 0.48s; }
+
+.motion-on .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.motion-on .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.motion-on .app-grid .reveal.is-visible:nth-child(even) {
+  transition-delay: 0.07s;
 }
 
 @media print {
