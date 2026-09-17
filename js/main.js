@@ -56,6 +56,44 @@
   window.addEventListener("scroll", setActiveNav, { passive: true });
   setActiveNav();
 
+  var header = document.querySelector(".site-header");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function setHeaderState() {
+    if (!header) {
+      return;
+    }
+    if (window.scrollY > 10) {
+      header.classList.add("is-scrolled");
+    } else {
+      header.classList.remove("is-scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+  setHeaderState();
+
+  if (!reduceMotion) {
+    document.documentElement.classList.add("motion-on");
+    var reveals = document.querySelectorAll(".section-head, .company, .app-card, .skill-panels > article, .split > .card, .contact-list, .contact-form");
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        var n;
+        for (n = 0; n < entries.length; n += 1) {
+          if (entries[n].isIntersecting) {
+            entries[n].target.classList.add("is-visible");
+            observer.unobserve(entries[n].target);
+          }
+        }
+      }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
+      var r;
+      for (r = 0; r < reveals.length; r += 1) {
+        reveals[r].classList.add("reveal");
+        observer.observe(reveals[r]);
+      }
+    }
+  }
+
   function isEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
