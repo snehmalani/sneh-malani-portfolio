@@ -59,6 +59,26 @@
   var header = document.querySelector(".site-header");
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function scrollToPageTop(event) {
+    if (event) {
+      event.preventDefault();
+    }
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reduceMotion ? "auto" : "smooth"
+    });
+  }
+
+  var backToTop = document.getElementById("back-to-top");
+  var homeLink = document.querySelector(".logo");
+  if (backToTop) {
+    backToTop.addEventListener("click", scrollToPageTop);
+  }
+  if (homeLink) {
+    homeLink.addEventListener("click", scrollToPageTop);
+  }
+
   function setHeaderState() {
     if (!header) {
       return;
