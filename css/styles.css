@@ -70,6 +70,15 @@ body {
   text-decoration: none;
 }
 
+.page-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .skip-link:focus {
   top: 16px;
 }
